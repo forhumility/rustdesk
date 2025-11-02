@@ -2226,22 +2226,22 @@ class _AboutState extends State<_About> {
                 SelectionArea(
                     child: Text('${translate('Fingerprint')}: $fingerprint')
                         .marginSymmetric(vertical: 4.0)),
-              InkWell(
-                  onTap: () {
-                    launchUrlString('https://rustdesk.com/privacy.html');
-                  },
-                  child: Text(
-                    translate('Privacy Statement'),
-                    style: linkStyle,
-                  ).marginSymmetric(vertical: 4.0)),
-              InkWell(
-                  onTap: () {
-                    launchUrlString('https://rustdesk.com');
-                  },
-                  child: Text(
-                    translate('Website'),
-                    style: linkStyle,
-                  ).marginSymmetric(vertical: 4.0)),
+              // InkWell(
+              //     onTap: () {
+              //       launchUrlString('https://rustdesk.com/privacy.html');
+              //     },
+              //     child: Text(
+              //       translate('Privacy Statement'),
+              //       style: linkStyle,
+              //     ).marginSymmetric(vertical: 4.0)),
+              // InkWell(
+              //     onTap: () {
+              //       launchUrlString('https://rustdesk.com');
+              //     },
+              //     child: Text(
+              //       translate('Website'),
+              //       style: linkStyle,
+              //     ).marginSymmetric(vertical: 4.0)),
               Container(
                 decoration: const BoxDecoration(color: Color(0xFF2c8cff)),
                 padding:
@@ -2254,7 +2254,7 @@ class _AboutState extends State<_About> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            'Copyright © ${DateTime.now().toString().substring(0, 4)} Purslane Ltd.\n$license',
+                            'Copyright © ${DateTime.now().toString().substring(0, 4)} HumbleStudio Ltd.\n$license',
                             style: const TextStyle(color: Colors.white),
                           ),
                           Text(
