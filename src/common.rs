@@ -819,13 +819,13 @@ pub fn get_sysinfo() -> serde_json::Value {
     let mut system = System::new();
     system.refresh_memory();
     system.refresh_cpu();
-    let memory = system.total_memory();
-    let memory = (memory as f64 / 1024. / 1024. / 1024. * 100.).round() / 100.;
+    let total_mem_bytes: u64 = system.total_memory();
+    let memory_gb: f64 = (total_mem_bytes as f64 / 1024. / 1024. / 1024. * 100.).round() / 100.;
     let cpus = system.cpus();
     let cpu_name = cpus.first().map(|x| x.brand()).unwrap_or_default();
     let cpu_name = cpu_name.trim_end();
-    let cpu_freq = cpus.first().map(|x| x.frequency()).unwrap_or_default();
-    let cpu_freq = (cpu_freq as f64 / 1024. * 100.).round() / 100.;
+    let cpu_freq_mhz: u64 = cpus.first().map(|x| x.frequency()).unwrap_or(0);
+    let cpu_freq: f64 = (cpu_freq_mhz as f64 / 1024. * 100.).round() / 100.;
     let cpu = if cpu_freq > 0. {
         format!("{}, {}GHz, ", cpu_name, cpu_freq)
     } else {
@@ -846,7 +846,7 @@ pub fn get_sysinfo() -> serde_json::Value {
     let mut out;
     out = json!({
         "cpu": format!("{cpu}{num_cpus}/{num_pcpus} cores"),
-        "memory": format!("{memory}GB"),
+        "memory": format!("{memory_gb}GB"),
         "os": os,
         "hostname": hostname,
     });
@@ -946,7 +946,7 @@ pub fn get_app_name() -> String {
 
 #[inline]
 pub fn is_rustdesk() -> bool {
-    hbb_common::config::APP_NAME.read().unwrap().eq("RustDesk")
+    hbb_common::config::APP_NAME.read().unwrap().eq("HumbleDesk")
 }
 
 #[inline]
@@ -1740,7 +1740,7 @@ pub fn get_builtin_option(key: &str) -> String {
 
 #[inline]
 pub fn is_custom_client() -> bool {
-    get_app_name() != "RustDesk"
+    get_app_name() != "HumbleDesk"
 }
 
 pub fn verify_login(_raw: &str, _id: &str) -> bool {
