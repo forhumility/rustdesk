@@ -28,7 +28,7 @@ native-windows-gui = {version = "1.0", default-features = false, features = ["an
 [package.metadata.winres]
 LegalCopyright = "Copyright © 2025 HumbleStudio Ltd. All rights reserved."
 ProductName = "HumbleDesk"
-OriginalFilename = "humbledesk.exe"
+OriginalFilename = "rustdesk.exe"
 FileDescription = "HumbleDesk Remote Desktop"
 #ProductVersion = ""
 
